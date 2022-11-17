@@ -6,6 +6,7 @@ namespace PasswordChecker
     {
         public static void Main(string[] args)
         {
+            bool isStrong = false;
             bool isLong = false;
             bool hasLower = false;
             bool hasUpper = false; 
@@ -42,16 +43,33 @@ namespace PasswordChecker
                 }
                 if (hasUpper && hasLower && hasNumb && hasSymb && isLong) //ends the loop when all conditions are met
                 {
+                    isStrong = true;
                     break;
                 }
             }
-            if (hasUpper && hasLower && hasNumb && hasSymb && isLong)
+            if (isStrong)
             {
                 Console.WriteLine("This password is strong");
             }
             else
             {
-                Console.WriteLine("This password is not strong enough");
+                Console.WriteLine("This password is not strong enough, it needs:");
+                if (!hasUpper)
+                {
+                    Console.WriteLine("an uppercase letter");
+                }
+                if (!hasLower)
+                {
+                    Console.WriteLine("a lowercase letter");
+                }
+                if (!hasNumb)
+                {
+                    Console.WriteLine("a symbol");
+                }
+                if (!isLong)
+                {
+                    Console.WriteLine("more than 8 characters");
+                }
             }
 
         }
